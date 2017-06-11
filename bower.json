@@ -1,0 +1,21 @@
+{
+  "name": "poloniex",
+  "description": "poloniex api",
+  "main": "index.js",
+  "authors": [
+    "namnn2512 <nam.k15cmu@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "autobahn": "^17.5.2"
+  }
+}
