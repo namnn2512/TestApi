@@ -29,6 +29,10 @@ io.on('connection', function (client) {
         console.log(data);
 
     });
+    
+    client.on('sendMessages', function (data) {
+        io.emit('broadcastMessages', data);
+    });
 });
 
 
