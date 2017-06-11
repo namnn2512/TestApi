@@ -6,12 +6,22 @@
 </head>
 
 <body>
-	<h1>Hello World!</h1>
-	<div id="future"></div>
-	<form id="form" id="chat_form">
-		<input id="chat_input" type="text">
-		<input type="submit" value="Send">
-	</form>
+	<div>
+		<label>DOGE: </label>
+		<span id="dogeValue"></span>
+	</div>
+	<div>
+		<label>BCN: </label>
+		<span id="bcnValue"></span>
+	</div>
+	<div>
+		<label>SC: </label>
+		<span id="scValue"></span>
+	</div>
+	<div>
+		<label>DGB: </label>
+		<span id="dgbValue"></span>
+	</div>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 </body>
@@ -25,7 +35,17 @@
     });
 
     socket.on('messages', function(data) {
-	debugger;
-        console.log(data);
+	if(data && data[0] == 'BTC_DOGE'){
+		$('#dogeValue').text(data[1]);
+	}
+	if(data && data[0] == 'BTC_BCN'){
+		$('#bcnValue').text(data[1])
+	}
+	if(data && data[0] == 'BTC_SC'){
+		$('#scValue').text(data[1])
+	}
+	if(data && data[0] == 'BTC_DGB'){
+		$('#dgbValue').text(data[1])
+	}
     });
 </script>
