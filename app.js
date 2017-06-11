@@ -28,39 +28,37 @@ io.on('connection', function (client) {
     client.on('join', function (data) {
         console.log(data);
 
-
-        connection.onopen = function (session) {
-            console.log("Websocket connection open");
-            function marketEvent(args, kwargs) {
-                // client.emit('messages', args);
-
-                console.log(args);
-            }
-            function tickerEvent(args, kwargs) {
-                // client.emit('messages', args);
-                console.log(args);
-            }
-            function trollboxEvent(args, kwargs) {
-                // client.emit('messages', args);
-                console.log(args);
-            }
-            session.subscribe('BTC_XMR', marketEvent);
-            session.subscribe('ticker', tickerEvent);
-            session.subscribe('trollbox', trollboxEvent);
-        }
-
-        connection.onclose = function (a,b) {
-            console.log(b);
-            console.log("Websocket connection closed");
-        }
-
-
-        connection.open();
     });
 });
 
 
+ connection.onopen = function (session) {
+        console.log("Websocket connection open");
+        function marketEvent(args, kwargs) {
+            // client.emit('messages', args);
 
+            console.log(args);
+        }
+        function tickerEvent(args, kwargs) {
+            // client.emit('messages', args);
+            console.log(args);
+        }
+        function trollboxEvent(args, kwargs) {
+            // client.emit('messages', args);
+            console.log(args);
+        }
+        session.subscribe('BTC_XMR', marketEvent);
+        session.subscribe('ticker', tickerEvent);
+        session.subscribe('trollbox', trollboxEvent);
+    }
+
+    connection.onclose = function (a,b) {
+        console.log(b);
+        console.log("Websocket connection closed");
+    }
+
+
+    connection.open();
 // // Import the module
 // var polo = require("poloniex-unofficial");
 
