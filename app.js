@@ -41,7 +41,7 @@ io.on('connection', function (client) {
         function tickerEvent(args, kwargs) {
             // client.emit('messages', args);
             io.emit('messages', args);
-//         }
+         }
 //         function trollboxEvent(args, kwargs) {
 //             // client.emit('messages', args);
 //             io.emit('messages', args);
