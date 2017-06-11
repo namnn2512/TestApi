@@ -19,7 +19,7 @@ app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(4200);
+server.listen(process.env.PORT);
 
 
 io.on('connection', function (client) {
@@ -29,60 +29,60 @@ io.on('connection', function (client) {
         console.log(data);
 
 
-        // connection.onopen = function (session) {
-        //     console.log("Websocket connection open");
-        //     function marketEvent(args, kwargs) {
-        //         // client.emit('messages', args);
+        connection.onopen = function (session) {
+            console.log("Websocket connection open");
+            function marketEvent(args, kwargs) {
+                // client.emit('messages', args);
 
-        //         console.log(args);
-        //     }
-        //     function tickerEvent(args, kwargs) {
-        //         // client.emit('messages', args);
-        //         console.log(args);
-        //     }
-        //     function trollboxEvent(args, kwargs) {
-        //         // client.emit('messages', args);
-        //         console.log(args);
-        //     }
-        //     session.subscribe('BTC_XMR', marketEvent);
-        //     session.subscribe('ticker', tickerEvent);
-        //     session.subscribe('trollbox', trollboxEvent);
-        // }
+                console.log(args);
+            }
+            function tickerEvent(args, kwargs) {
+                // client.emit('messages', args);
+                console.log(args);
+            }
+            function trollboxEvent(args, kwargs) {
+                // client.emit('messages', args);
+                console.log(args);
+            }
+            session.subscribe('BTC_XMR', marketEvent);
+            session.subscribe('ticker', tickerEvent);
+            session.subscribe('trollbox', trollboxEvent);
+        }
 
-        // connection.onclose = function (a,b) {
-        //     console.log(b);
-        //     console.log("Websocket connection closed");
-        // }
+        connection.onclose = function (a,b) {
+            console.log(b);
+            console.log("Websocket connection closed");
+        }
 
 
-        // connection.open();
+        connection.open();
     });
 });
 
 
 
-// Import the module
-var polo = require("poloniex-unofficial");
+// // Import the module
+// var polo = require("poloniex-unofficial");
 
-// Get access to the push API
-var poloPush = new polo.PushWrapper();
+// // Get access to the push API
+// var poloPush = new polo.PushWrapper();
 
-// Some currency pairs to watch
-var watchList = ["BTC_ETH", "BTC_XMR"];
+// // Some currency pairs to watch
+// var watchList = ["BTC_ETH", "BTC_XMR"];
 
-// Get price ticker updates
-poloPush.ticker((err, response) => {
-    if (err) {
-        // Log error message
-        console.log("An error occurred: " + err.msg);
+// // Get price ticker updates
+// poloPush.ticker((err, response) => {
+//     if (err) {
+//         // Log error message
+//         console.log("An error occurred: " + err.msg);
 
-        // Disconnect
-        return true;
-    }
+//         // Disconnect
+//         return true;
+//     }
 
-    // Check if this currency is in the watch list
-    if (watchList.indexOf(response.currencyPair) > -1) {
-        // Log the currency pair and its last price
-        console.log(response.currencyPair + ": " + response.last);
-    }
-});
+//     // Check if this currency is in the watch list
+//     if (watchList.indexOf(response.currencyPair) > -1) {
+//         // Log the currency pair and its last price
+//         console.log(response.currencyPair + ": " + response.last);
+//     }
+// });
