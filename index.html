@@ -8,19 +8,27 @@
 <body>
 	<div>
 		<label>DOGE: </label>
-		<span id="dogeValue"></span>
+		<span id="BTC_DOGE"></span>
 	</div>
 	<div>
 		<label>BCN: </label>
-		<span id="bcnValue"></span>
+		<span id="BTC_BCN"></span>
 	</div>
 	<div>
 		<label>SC: </label>
-		<span id="scValue"></span>
+		<span id="BTC_SC"></span>
 	</div>
 	<div>
 		<label>DGB: </label>
-		<span id="dgbValue"></span>
+		<span id="BTC_DGB"></span>
+	</div>
+	<div>
+		<label>STR: </label>
+		<span id="BTC_STR"></span>
+	</div>
+	<div>
+		<label>XRP: </label>
+		<span id="BTC_XRP"></span>
 	</div>
 	<h1 id="message"></h1>
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -36,18 +44,9 @@
     });
 
     socket.on('messages', function(data) {
-	if(data && data[0] == 'BTC_DOGE'){
-		$('#dogeValue').text(data[1]);
-	}
-	if(data && data[0] == 'BTC_BCN'){
-		$('#bcnValue').text(data[1])
-	}
-	if(data && data[0] == 'BTC_SC'){
-		$('#scValue').text(data[1])
-	}
-	if(data && data[0] == 'BTC_DGB'){
-		$('#dgbValue').text(data[1])
-	}
+		if(data && $('#' +data[0])){
+			$('#' +data[0]).text(data[1]);
+		}
     });
 	
     var sendMessage = function(data){
