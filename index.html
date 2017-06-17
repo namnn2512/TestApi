@@ -86,12 +86,15 @@
 			var currentPrice = parseFloat($('#'+data[0]).text());
 			if (price > currentPrice) {
 				$('#'+data[0]).parent().css('background-color','#00FF7F');
+				setTimeout(function(){
+				$('#'+data[0]).parent().css('background-color','none');
+				},500);
 			} else {
 				$('#'+data[0]).parent().css('background-color','#FFA500');
-			}
-			setTimeout(function(){
+				setTimeout(function(){
 				$('#'+data[0]).parent().css('background-color','none');
-			},500);
+				},500);
+			}			
 			$('#' +data[0]).text(price);
 			var percent = parseFloat(data[4])*100;
 			if (percent <0) {
