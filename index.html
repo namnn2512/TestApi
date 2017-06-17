@@ -6,31 +6,61 @@
 </head>
 
 <body>
-	<div>
-		<label>DOGE: </label>
-		<span id="BTC_DOGE"></span>
-	</div>
-	<div>
-		<label>BCN: </label>
-		<span id="BTC_BCN"></span>
-	</div>
-	<div>
-		<label>SC: </label>
-		<span id="BTC_SC"></span>
-	</div>
-	<div>
-		<label>DGB: </label>
-		<span id="BTC_DGB"></span>
-	</div>
-	<div>
-		<label>STR: </label>
-		<span id="BTC_STR"></span>
-	</div>
-	<div>
-		<label>XRP: </label>
-		<span id="BTC_XRP"></span>
+	<div class="table-coin">
+		<table>
+			<tr>
+				<td id="coin-name">Coin name</td>
+				<td id="coin-price">Price</td>
+				<td id="coin-24High">24h High</td>
+				<td id="coin-24Low">24h Low</td>
+				<td id="coin-24Percent">Percent</td>
+			</tr>
+			<tr>
+				<td id="coin-name"><label>DOGE </label></td>
+				<td id="coin-price"><span id="BTC_DOGE"></span></td>
+				<td id="coin-24High"><span id="24HighBTC_DOGE"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC_DOGE"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC_DOGE"></span></td>
+			</tr>
+			<tr>
+				<td id="coin-name"><label>BCN </label></td>
+				<td id="coin-price"><span id="BTC_BCN"></span></td>
+				<td id="coin-24High"><span id="24HighBTC_BCN"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC_BCN"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC_BCN"></span></td>
+			</tr>
+			<tr>
+				<td id="coin-name"><label>SC </label></td>
+				<td id="coin-price"><span id="BTC_SC"></span></td>
+				<td id="coin-24High"><span id="24HighBTC_SC"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC_SC"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC_SC"></span></td>
+			</tr>
+			<tr>
+				<td id="coin-name"><label>DGB </label></td>
+				<td id="coin-price"><span id="BTC_DGB"></span></td>
+				<td id="coin-24High"><span id="24HighBTC_DGB"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC_DGB"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC_DGB"></span></td>
+			</tr>
+			<tr>
+				<td id="coin-name"><label>STR </label></td>
+				<td id="coin-price"><span id="BTC_STR"></span></td>
+				<td id="coin-24High"><span id="24HighBTC_STR"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC_STR"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC_STR"></span></td>
+			</tr>
+			<tr>
+				<td id="coin-name"><label>XRP </label></td>
+				<td id="coin-price"><span id="BTC_XRP"></span></td>
+				<td id="coin-24High"><span id="24HighBTC_XRP"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC_XRP"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC_XRP"></span></td>
+			</tr>
+		</table>
 	</div>
 	<h1 id="message"></h1>
+	
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
 </body>
@@ -46,6 +76,10 @@
     socket.on('messages', function(data) {
 		if(data && $('#' +data[0])){
 			$('#' +data[0]).text(data[1]);
+			var percent = (parseFloat(data[4])*100).toString().substring(0,4);
+			$('#24High' +data[0]).text(data[8]);	
+			$('#24Low' +data[0]).text(data[9]);	
+			$('#percent' +data[0]).text(percent+'%');
 		}
     });
 	
@@ -57,3 +91,32 @@
 		$('#message').text(data);
     });
 </script>
+<style>
+.table-coin #coin-name {
+	width:100px;
+	text-align: center;
+	font-weight: 800;	
+}
+.table-coin #coin-price {
+	width:200px;
+	text-align: center;
+}
+.table-coin #coin-24High {
+	width:200px;
+	text-align: center;
+}
+.table-coin #coin-24Low {
+	width:200px;
+	text-align: center;
+}
+.table-coin #coin-24Percent {
+	width:50px;
+	text-align: center;
+}
+.table-coin tr td {
+	border: solid black 1px;
+}
+.table-coin tr:first-child td{
+	padding: 10px;
+}
+</style>
