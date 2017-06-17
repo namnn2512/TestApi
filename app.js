@@ -2,6 +2,7 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var express = require('express');
+var http = require('http');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
@@ -34,7 +35,7 @@ io.on('connection', function (client) {
         io.emit('broadcastMessages', data);
     });
     client.on('tradeCoin',function(data){
-        io.emit('BTC_XMR','10',data);
+        io.emit('BTC_XMR',data);
     });
 });
 
@@ -43,8 +44,7 @@ io.on('connection', function (client) {
         console.log("Websocket connection open");
          function marketEvent(args, kwargs) {
              //client.emit('messages', args);
-             io.emit('tradeCoin', args);
-             console.log(args);
+             //io.emit('tradeCoin', args);
         }
         function tickerEvent(args, kwargs) {
             // client.emit('messages', args);
@@ -54,6 +54,13 @@ io.on('connection', function (client) {
 //             // client.emit('messages', args);
 //             io.emit('messages', args);
 //         }
+        http.get('https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_NXT',function(resp){
+            resp.on('tradeCoin',function(response){
+                return response;
+            })
+        }).on("error",function(e){
+            console.log("Have error"+e.message);
+        });
         session.subscribe('BTC_XMR', marketEvent);
         session.subscribe('ticker', tickerEvent);
         //session.subscribe('trollbox', trollboxEvent);
