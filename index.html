@@ -115,7 +115,7 @@
     });
     socket.on('tradeCoin',function(data){
 	    socket.emit('BTC_XMR', data);
-	    var object = data.data;
+	    var object = data;
 	    console.log(object);
     });
 	
