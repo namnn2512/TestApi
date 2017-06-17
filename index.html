@@ -115,10 +115,10 @@
     });
     socket.on('tradeCoin',function(data){
 	    socket.emit('BTC_XMR', data);
-	    var object = data;
-	    console.log(object);
-	    var length = object.length;
-	    console.log(length);
+	    // var object = data;
+	    // console.log(object);
+	    // var length = object.length;
+	    // console.log(length);
     });
 	
     var sendMessage = function(data){
@@ -128,6 +128,13 @@
     socket.on('broadcastMessages', function(data) {
 		$('#message').text(data);
     });
+    var dateTradeOB = {
+    	command:'returnOrderBook',
+    	currencyPair:'BTC_NXT'
+    }
+    $.post( 'https://poloniex.com/public',dateTradeOB,function( data ) {
+  		console.log(data);
+	});
 </script>
 <style>
 .table-coin #coin-name {
