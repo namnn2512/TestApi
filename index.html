@@ -136,11 +136,10 @@
     url: 'https://poloniex.com/public',
     type: 'post',
     data: dataTradeOB,
-    headers: { 
+   	headers: new Headers({
     	'Access-Control-Allow-Origin':'*',
-    	'Content-Type': 'multipart/form-data'
-    },
-    dataType: 'json',
+		"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
+	}),
     success: function (data) {
         console.log(data);
     }
