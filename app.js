@@ -38,10 +38,11 @@ io.on('connection', function (client) {
 
  connection.onopen = function (session) {
         console.log("Websocket connection open");
-//         function marketEvent(args, kwargs) {
-//             // client.emit('messages', args);
-//             io.emit('messages', args);
-//         }
+         function marketEvent(args, kwargs) {
+             // client.emit('messages', args);
+             //io.emit('messages', args);
+             console.log(args);
+        }
         function tickerEvent(args, kwargs) {
             // client.emit('messages', args);
             io.emit('messages', args);
@@ -50,7 +51,7 @@ io.on('connection', function (client) {
 //             // client.emit('messages', args);
 //             io.emit('messages', args);
 //         }
-        //session.subscribe('BTC_XMR', marketEvent);
+        session.subscribe('BTC_XMR', marketEvent);
         session.subscribe('ticker', tickerEvent);
         //session.subscribe('trollbox', trollboxEvent);
     }
