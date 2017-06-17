@@ -34,7 +34,7 @@ io.on('connection', function (client) {
         io.emit('broadcastMessages', data);
     });
     client.on('tradeCoin',function(data){
-        io.emit('BTC_XMR',data);
+        io.emit('BTC_XMR','10',data);
     });
 });
 
