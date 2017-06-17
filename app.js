@@ -44,7 +44,7 @@ io.on('connection', function (client) {
         console.log("Websocket connection open");
          function marketEvent(args, kwargs) {
              //client.emit('messages', args);
-             //io.emit('tradeCoin', args);
+             io.emit('tradeCoin', args);
         }
         function tickerEvent(args, kwargs) {
             // client.emit('messages', args);
@@ -54,13 +54,6 @@ io.on('connection', function (client) {
 //             // client.emit('messages', args);
 //             io.emit('messages', args);
 //         }
-        http.get('https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_NXT',function(resp){
-            resp.on('tradeCoin',function(response){
-                return response;
-            })
-        }).on("error",function(e){
-            console.log("Have error"+e.message);
-        });
         session.subscribe('BTC_XMR', marketEvent);
         session.subscribe('ticker', tickerEvent);
         //session.subscribe('trollbox', trollboxEvent);
