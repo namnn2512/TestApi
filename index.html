@@ -114,6 +114,7 @@
 		}
     });
     socket.on('BTC_XMR',function(data){
+	    socket.emit('BTC_XMR', data);
 	      console.log(data);
     });
 	
