@@ -128,13 +128,20 @@
     socket.on('broadcastMessages', function(data) {
 		$('#message').text(data);
     });
-    var dateTradeOB = {
+    var dataTradeOB = {
     	command:'returnOrderBook',
     	currencyPair:'BTC_NXT'
     }
-    $.post( 'https://poloniex.com/public',dateTradeOB,function( data ) {
-  		console.log(data);
-	});
+	$.ajax({
+    url: 'https://poloniex.com/public',
+    type: 'post',
+    data: dataTradeOB,
+    headers: { "Access-Control-Allow-Origin": "*"},
+    dataType: 'json',
+    success: function (data) {
+        console.log(data);
+    }
+});
 </script>
 <style>
 .table-coin #coin-name {
