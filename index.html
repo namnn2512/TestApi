@@ -84,15 +84,21 @@
 		if(data && $('#' +data[0])){
 			var price = data[1];
 			var currentPrice = parseFloat($('#'+data[0]).text());
+			var element = $('#'+data[0]).parent();
+			var elementCoinName = element.parent().children('td:first');
 			if (price > currentPrice) {
-				$('#'+data[0]).parent().css('background-color','#00FF7F');
+				element.css('background-color','#00FF7F');
+				elementCoinName.css('background-color','#00FF7F');
 				setTimeout(function(){
-				$('#'+data[0]).parent().css('background-color','white');
+					element.css('background-color','white');
+					elementCoinName.css('background-color','white');
 				},500);
 			} else {
-				$('#'+data[0]).parent().css('background-color','#FFA500');
+				element.css('background-color','#FFA500');
+				elementCoinName.css('background-color','#FFA500');
 				setTimeout(function(){
-				$('#'+data[0]).parent().css('background-color','none');
+					element.css('background-color','white');
+					elementCoinName.css('background-color','white');
 				},500);
 			}			
 			$('#' +data[0]).text(price);
