@@ -43,7 +43,7 @@ io.on('connection', function (client) {
         console.log("Websocket connection open");
          function marketEvent(args, kwargs) {
              client.emit('messages', args);
-             //io.emit('messages', args);
+             io.emit('messages', args);
              console.log(args);
         }
         function tickerEvent(args, kwargs) {
