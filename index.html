@@ -83,10 +83,15 @@
     socket.on('messages', function(data) {
 		if(data && $('#' +data[0])){
 			$('#' +data[0]).text(data[1]);
-			var percent = (parseFloat(data[4])*100).toString().substring(0,4);
+			var percent = parseFloat(data[4])*100;
+			if (percent <0) {
+				$('#percent'+data[0]).css('color','red');
+			} else {
+				$('#percent'+data[0]).css('color','green');
+			}
 			$('#24High' +data[0]).text(data[8]);	
 			$('#24Low' +data[0]).text(data[9]);	
-			$('#percent' +data[0]).text(percent+'%');
+			$('#percent' +data[0]).text(percent.toString().substring(0,4)+'%');
 		}
     });
 	
