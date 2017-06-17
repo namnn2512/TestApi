@@ -82,7 +82,17 @@
 
     socket.on('messages', function(data) {
 		if(data && $('#' +data[0])){
-			$('#' +data[0]).text(data[1]);
+			var price = data[1];
+			var currentPrice = parseFloat($('#'+data[0]).text());
+			if (price > currentPrice) {
+				$('#'+data[0]).parent().css('background-color','#00FF7F');
+			} else {
+				$('#'+data[0]).parent().css('background-color','#FFA500');
+			}
+			setTimeout(function(){
+				$('#'+data[0]).parent().css('background-color','none');
+			},5000);
+			$('#' +data[0]).text(price);
 			var percent = parseFloat(data[4])*100;
 			if (percent <0) {
 				$('#percent'+data[0]).css('color','red');
