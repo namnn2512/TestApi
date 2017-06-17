@@ -87,19 +87,19 @@
 			var element = $('#'+data[0]).parent();
 			var elementCoinName = element.parent().children('td:first');
 			if (price > currentPrice) {
-				element.css('background-color','#00FF7F');
-				elementCoinName.css('background-color','#00FF7F');
+				element.css('background-color','green');
+				elementCoinName.css('background-color','green');
 				setTimeout(function(){
 					element.css('background-color','white');
 					elementCoinName.css('background-color','white');
-				},500);
+				},1000);
 			} else {
 				element.css('background-color','#FFA500');
 				elementCoinName.css('background-color','#FFA500');
 				setTimeout(function(){
 					element.css('background-color','white');
 					elementCoinName.css('background-color','white');
-				},500);
+				},1000);
 			}			
 			$('#' +data[0]).text(price);
 			var percent = parseFloat(data[4])*100;
