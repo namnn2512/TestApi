@@ -22,21 +22,6 @@ app.get('/', function (req, res, next) {
 
 server.listen(process.env.PORT);
 
-var options = {
-  host: url,
-  path: 'https://poloniex.com/public?command=returnOrderBook&currencyPair=BTC_NXT',
-  method: 'POST'
-};
-
-http.request(options, function(res) {
-  console.log('STATUS: ' + res.statusCode);
-  console.log('HEADERS: ' + JSON.stringify(res.headers));
-  res.setEncoding('utf8');
-  res.on('data', function (chunk) {
-    console.log('BODY: ' + chunk);
-  });
-}).end();
-
 io.on('connection', function (client) {
     console.log('Client connected...');
 
