@@ -3,9 +3,12 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var express = require('express');
 var http = require('http');
+var https = require('https');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
+var querystring = require('querystring');
+var request = require("request")
 
 var autobahn = require('autobahn');
 var wsuri = "wss://api.poloniex.com";
@@ -17,36 +20,26 @@ var connection = new autobahn.Connection({
 
 app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function (req, res, next) {
-    // var data = querystring.stringify({
-    //     command:'returnOrderBook',
-    //     currencyPair:'BTC_NXT'
-    // });
+    var url = "https://poloniex.com/public?"+"command=returnOrderBook"+"&currencyPair=BTC_NXT"+"&depth=10"
 
-    // var options = {
-    //     host:'https://poloniex.com',
-    //     port:80,
-    //     path:'/public',
-    //     method:'POST',
-    //     headers:{
-    //         'Content-Type': 'application/x-www-form-urlencoded',
-    //         'Content-Length': Buffer.byteLength(data)
-    //     }
-    // };
-    // var httpreq = http.request(options, function (response) {
-    //     response.setEncoding('utf8');
-    //     response.on('data', function (chunk) {
-    //       console.log("body: " + chunk);
-    //     });
-    //     response.on('end', function() {
-    //       res.send('ok');
-    //     });
-    // });
-    // httpreq.write(data);
-    // httpreq.end();
+    https.get(url, function(res){
+    var body = '';
+
+    res.on('data', function(chunk){
+        body += chunk;
+    });
+
+    res.on('end', function(){
+        console.log("Got a response: ", body);
+    });
+    }).on('error', function(e){
+          console.log("Got an error: ", e);
+    });
     res.sendFile(__dirname + '/index.html');
 });
+var port = 3030;
 
-server.listen(process.env.PORT);
+server.listen(process.env.PORT || port);
 
 io.on('connection', function (client) {
     console.log('Client connected...');
