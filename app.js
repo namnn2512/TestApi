@@ -36,9 +36,8 @@ app.get('/', function (req, res, next) {
     // });
     res.sendFile(__dirname + '/index.html');
 });
-var port = 3030;
 
-server.listen(process.env.PORT || port);
+server.listen(process.env.PORT);
 
 io.on('connection', function (client) {
     console.log('Client connected...');
