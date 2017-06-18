@@ -6,7 +6,7 @@ var app = express();
 var http = require('http');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var request = require("request")
+var request = require("request");
 
 var autobahn = require('autobahn');
 var wsuri = "wss://api.poloniex.com";
