@@ -20,21 +20,21 @@ var connection = new autobahn.Connection({
 
 app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function (req, res, next) {
-    var url = "https://poloniex.com/public?"+"command=returnOrderBook"+"&currencyPair=BTC_NXT"+"&depth=10"
+    // var url = "https://poloniex.com/public?"+"command=returnOrderBook"+"&currencyPair=BTC_NXT"+"&depth=10"
 
-    https.get(url, function(res){
-    var body = '';
+    // https.get(url, function(res){
+    // var body = '';
 
-    res.on('data', function(chunk){
-        body += chunk;
-    });
+    // res.on('data', function(chunk){
+    //     body += chunk;
+    // });
 
-    res.on('end', function(){
-        console.log("Got a response: ", body);
-    });
-    }).on('error', function(e){
-          console.log("Got an error: ", e);
-    });
+    // res.on('end', function(){
+    //     console.log("Got a response: ", body);
+    // });
+    // }).on('error', function(e){
+    //       console.log("Got an error: ", e);
+    // });
     res.sendFile(__dirname + '/index.html');
 });
 var port = 3030;
