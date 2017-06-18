@@ -7,7 +7,6 @@ var https = require('https');
 var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var querystring = require('querystring');
 var request = require("request")
 
 var autobahn = require('autobahn');
