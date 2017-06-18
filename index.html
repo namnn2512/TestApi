@@ -128,22 +128,22 @@
     socket.on('broadcastMessages', function(data) {
 		$('#message').text(data);
     });
-    var dataTradeOB = {
-    	command:'returnOrderBook',
-    	currencyPair:'BTC_NXT'
-    }
-	$.ajax({
-    url: 'https://poloniex.com/public',
-    type: 'post',
-    data: dataTradeOB,
- //   	headers: {
- //    	'Access-Control-Allow-Origin':"*",
-	// 	"Content-Type": "application/json"
-	// },
-    success: function (data) {
-        console.log(data);
-    }
-});
+//     var dataTradeOB = {
+//     	command:'returnOrderBook',
+//     	currencyPair:'BTC_NXT'
+//     }
+// 	$.ajax({
+//     url: 'https://poloniex.com/public',
+//     type: 'post',
+//     data: dataTradeOB,
+//  //   	headers: {
+//  //    	'Access-Control-Allow-Origin':"*",
+// 	// 	"Content-Type": "application/json"
+// 	// },
+//     success: function (data) {
+//         console.log(data);
+//     }
+// });
 </script>
 <style>
 .table-coin #coin-name {
