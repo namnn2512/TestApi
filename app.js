@@ -17,27 +17,32 @@ var connection = new autobahn.Connection({
 
 app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function (req, res, next) {
-    var options = {
-        host:'https://poloniex.com',
-        port:80,
-        path:'/public',
-        method:'POST',
-        headers:{
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': Buffer.byteLength(data)
-        }
-    };
-    var httpreq = http.request(options, function (response) {
-        response.setEncoding('utf8');
-        response.on('data', function (chunk) {
-          console.log("body: " + chunk);
-        });
-        response.on('end', function() {
-          res.send('ok');
-        });
-    });
-    httpreq.write(data);
-    httpreq.end();
+    // var data = querystring.stringify({
+    //     command:'returnOrderBook',
+    //     currencyPair:'BTC_NXT'
+    // });
+
+    // var options = {
+    //     host:'https://poloniex.com',
+    //     port:80,
+    //     path:'/public',
+    //     method:'POST',
+    //     headers:{
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //         'Content-Length': Buffer.byteLength(data)
+    //     }
+    // };
+    // var httpreq = http.request(options, function (response) {
+    //     response.setEncoding('utf8');
+    //     response.on('data', function (chunk) {
+    //       console.log("body: " + chunk);
+    //     });
+    //     response.on('end', function() {
+    //       res.send('ok');
+    //     });
+    // });
+    // httpreq.write(data);
+    // httpreq.end();
     res.sendFile(__dirname + '/index.html');
 });
 
