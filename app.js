@@ -6,7 +6,7 @@ var app = express();
 var http = require('http');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-
+var bittrex = require('./node.bittrex.api.js');
 var autobahn = require('autobahn');
 var wsuri = "wss://api.poloniex.com";
 
@@ -80,28 +80,23 @@ io.on('connection', function (client) {
 
 
     connection.open();
-// // Import the module
-// var polo = require("poloniex-unofficial");
 
-// // Get access to the push API
-// var poloPush = new polo.PushWrapper();
+//bittrex
+bittrex.websockets.listen( function( data ) {
+  if (data.M === 'updateSummaryState') {
+    data.A.forEach(function(data_for) {
+      data_for.Deltas.forEach(function(marketsDelta) {
+        io.emit('bittrexMessages', marketsDelta);
+        console.log('Ticker Update for '+ marketsDelta.MarketName, marketsDelta);
+      });
+    });
+  }
+});
 
-// // Some currency pairs to watch
-// var watchList = ["BTC_ETH", "BTC_XMR"];
-
-// // Get price ticker updates
-// poloPush.ticker((err, response) => {
-//     if (err) {
-//         // Log error message
-//         console.log("An error occurred: " + err.msg);
-
-//         // Disconnect
-//         return true;
-//     }
-
-//     // Check if this currency is in the watch list
-//     if (watchList.indexOf(response.currencyPair) > -1) {
-//         // Log the currency pair and its last price
-//         console.log(response.currencyPair + ": " + response.last);
-//     }
-// });
+bittrex.websockets.subscribe(['BTC-ETH','BTC-SC','BTC-ZEN'], function(data) {
+  if (data.M === 'updateExchangeState') {
+    data.A.forEach(function(data_for) {
+      console.log('Market Update for '+ data_for.MarketName, data_for);
+    });
+  }
+});
