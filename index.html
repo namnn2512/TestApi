@@ -213,16 +213,17 @@
     });
     
     socket.on('bittrexMessages',function(data){
-    	console.log(data);
     	if(data && $('#' +data.MarketName)){
-    		var priceBit = data.Last;
+    		var priceBit = parseFloat(data.Last).toFixed(8);
     		var currentPriceBit = parseFloat($('#'+data.MarketName).text());
     		if (priceBit != currentPriceBit) {
     			changeColor(data.MarketName, priceBit,currentPriceBit);	
     		}
 			$('#' +data.MarketName).text(priceBit);
-			$('#24High' +data.MarketName).text(data.High);	
-			$('#24Low' +data.MarketName).text(data.Low);	
+			var high = parseFloat(data.High).toFixed(8);
+			var low = parseFloat(data.Low).toFixed(8);
+			$('#24High' +data.MarketName).text(high);	
+			$('#24Low' +data.MarketName).text(low);	
 		}
     });
     function changeColor(element, price, currentPrice) {
@@ -262,6 +263,10 @@
 // });
 </script>
 <style>
+.table-coin {
+	width: 50%;
+	float:left;
+}
 .table-coin #coin-name {
 	width:100px;
 	text-align: center;
