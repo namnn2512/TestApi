@@ -35,7 +35,9 @@ app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(process.env.PORT);
+var port = 3000;
+
+server.listen(process.env.PORT || port);
 
 io.on('connection', function (client) {
     console.log('Client connected...');
@@ -87,7 +89,7 @@ bittrex.websockets.listen( function( data ) {
     data.A.forEach(function(data_for) {
       data_for.Deltas.forEach(function(marketsDelta) {
         io.emit('bittrexMessages', marketsDelta);
-        console.log('Ticker Update for '+ marketsDelta.MarketName, marketsDelta);
+        // console.log('Ticker Update for '+ marketsDelta.MarketName, marketsDelta);
       });
     });
   }
@@ -96,7 +98,7 @@ bittrex.websockets.listen( function( data ) {
 bittrex.websockets.subscribe(['BTC-ETH','BTC-SC','BTC-ZEN'], function(data) {
   if (data.M === 'updateExchangeState') {
     data.A.forEach(function(data_for) {
-      console.log('Market Update for '+ data_for.MarketName, data_for);
+      // console.log('Market Update for '+ data_for.MarketName, data_for);
     });
   }
 });
