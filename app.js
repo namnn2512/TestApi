@@ -6,7 +6,7 @@ var app = express();
 var http = require('http');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
-var bittrex = require('node.bittrex.api.js');
+var bittrex = require('node.bittrex.api');
 var autobahn = require('autobahn');
 var wsuri = "wss://api.poloniex.com";
 
