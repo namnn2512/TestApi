@@ -119,6 +119,13 @@
 				<td id="coin-24Low"><span id="24LowBTC-NXT"></span></td>
 				<td id="coin-24Percent"><span id="percentBTC-NXT"></span></td>		
 			</tr>
+			<tr>
+				<td id="coin-name"><label>THC</label></td>
+				<td id="coin-price"><span id="BTC-THC"></span></td>
+				<td id="coin-24High"><span id="24HighBTC-THC"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC-THC"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC-THC"></span></td>		
+			</tr>
 		</table>
 	</div>
 	<h1 id="message"></h1>
@@ -139,22 +146,8 @@
 		if(data && $('#' +data[0])){
 			var price = data[1];
 			var currentPrice = parseFloat($('#'+data[0]).text());
-			var element = $('#'+data[0]).parent();
-			var elementCoinName = element.parent().children('td:first');
-			if (price > currentPrice) {
-				element.css('background-color','green');
-				elementCoinName.css('background-color','green');
-				setTimeout(function(){
-					element.css('background-color','white');
-					elementCoinName.css('background-color','white');
-				},700);
-			} else if(price < currentPrice){
-				element.css('background-color','#FFA500');
-				elementCoinName.css('background-color','#FFA500');
-				setTimeout(function(){
-					element.css('background-color','white');
-					elementCoinName.css('background-color','white');
-				},700);
+			if (price != currentPrice) {
+				changeColor(data[0], price, currentPrice);		
 			}			
 			$('#' +data[0]).text(price);
 			var percent = parseFloat(data[4])*100;
@@ -187,9 +180,32 @@
     socket.on('bittrexMessages',function(data){
     	if(data && $('#' +data.MarketName)){
     		var priceBit = data.Last;
-			$('#' +data.MarketName).text(priceBit);
+    		var currentPriceBit = parseFloat($('#'+data.MarketName).text());
+    		if (priceBit != currentPriceBit) {
+    			changeColor(data.MarketName, priceBit,currentPriceBit);	
+    		}
+			$('#' +data.MarketName).text(priceBit);			
 		}
     });
+    function changeColor(element, price, currentPrice) {
+			var element = $('#'+element).parent();
+			var elementCoinName = element.parent().children('td:first');
+			if (price > currentPrice) {
+				element.css('background-color','green');
+				elementCoinName.css('background-color','green');
+				setTimeout(function(){
+					element.css('background-color','white');
+					elementCoinName.css('background-color','white');
+				},700);
+			} else if(price < currentPrice){
+				element.css('background-color','#FFA500');
+				elementCoinName.css('background-color','#FFA500');
+				setTimeout(function(){
+					element.css('background-color','white');
+					elementCoinName.css('background-color','white');
+				},700);
+			}
+    }
 //     var dataTradeOB = {
 //     	command:'returnOrderBook',
 //     	currencyPair:'BTC_NXT'
