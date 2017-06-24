@@ -142,6 +142,10 @@
     socket.on('broadcastMessages', function(data) {
 		$('#message').text(data);
     });
+    
+    socket.on('bittrexMessages',function(data){
+    	console.log(data);
+    });
 //     var dataTradeOB = {
 //     	command:'returnOrderBook',
 //     	currencyPair:'BTC_NXT'
