@@ -79,6 +79,13 @@
 				<td id="coin-24Low"><span id="24LowBTC_GRC"></span></td>
 				<td id="coin-24Percent"><span id="percentBTC_GRC"></span></td>
 			</tr>
+			<tr>
+				<td id="coin-name"><label>BURST </label></td>
+				<td id="coin-price"><span id="BTC_BURST"></span></td>
+				<td id="coin-24High"><span id="24HighBTC_BURST"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC_BURST"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC_BURST"></span></td>
+			</tr>
 		</table>
 	</div>
 	<div class="table-coin">
@@ -125,6 +132,34 @@
 				<td id="coin-24High"><span id="24HighBTC-THC"></span></td>
 				<td id="coin-24Low"><span id="24LowBTC-THC"></span></td>
 				<td id="coin-24Percent"><span id="percentBTC-THC"></span></td>		
+			</tr>
+			<tr>
+				<td id="coin-name"><label>RDD</label></td>
+				<td id="coin-price"><span id="BTC-RDD"></span></td>
+				<td id="coin-24High"><span id="24HighBTC-RDD"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC-RDD"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC-RDD"></span></td>		
+			</tr>
+			<tr>
+				<td id="coin-name"><label>MYR</label></td>
+				<td id="coin-price"><span id="BTC-MYR"></span></td>
+				<td id="coin-24High"><span id="24HighBTC-MYR"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC-MYR"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC-MYR"></span></td>		
+			</tr>
+			<tr>
+				<td id="coin-name"><label>MYR</label></td>
+				<td id="coin-price"><span id="BTC-MYR"></span></td>
+				<td id="coin-24High"><span id="24HighBTC-MYR"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC-MYR"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC-MYR"></span></td>		
+			</tr>
+			<tr>
+				<td id="coin-name"><label>SEC</label></td>
+				<td id="coin-price"><span id="BTC-SEC"></span></td>
+				<td id="coin-24High"><span id="24HighBTC-SEC"></span></td>
+				<td id="coin-24Low"><span id="24LowBTC-SEC"></span></td>
+				<td id="coin-24Percent"><span id="percentBTC-SEC"></span></td>		
 			</tr>
 		</table>
 	</div>
@@ -178,13 +213,16 @@
     });
     
     socket.on('bittrexMessages',function(data){
+    	console.log(data);
     	if(data && $('#' +data.MarketName)){
     		var priceBit = data.Last;
     		var currentPriceBit = parseFloat($('#'+data.MarketName).text());
     		if (priceBit != currentPriceBit) {
     			changeColor(data.MarketName, priceBit,currentPriceBit);	
     		}
-			$('#' +data.MarketName).text(priceBit);			
+			$('#' +data.MarketName).text(priceBit);
+			$('#24High' +data.MarketName).text(data.High);	
+			$('#24Low' +data.MarketName).text(data.Low);	
 		}
     });
     function changeColor(element, price, currentPrice) {
