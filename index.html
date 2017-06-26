@@ -300,7 +300,7 @@
     	$(function() {
     		var totalBTC = 0;
 		    $.each(askList, function(i, item) {
-		    	var totalBTC += parseFloat(item[0])*parseFloat(item[1]);
+		    	totalBTC += parseFloat(item[0])*parseFloat(item[1]);
 		        var $tr = $('<tr>').append(
 		            $('<td>').text(item[0]),
 		            $('<td>').text(item[1]),
