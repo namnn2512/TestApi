@@ -170,6 +170,11 @@
 			</tr>
 		</table>
 	</div>
+	<div class="table-trade-ob">
+		<table id="table-trade-ob-demo">
+			
+		</table>
+	</div>
 	<h1 id="message"></h1>
 	
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -292,8 +297,7 @@
 		        var $tr = $('<tr>').append(
 		            $('<td>').text(item[0]),
 		            $('<td>').text(item[1])
-		        );
-		        console.log($tr.wrap('<p>').html());
+		        ).appendTo('#table-trade-ob-demo');
 		    });
 		});
     }
