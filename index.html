@@ -314,13 +314,14 @@
     	$(function() {
     		var totalBTC_asks = 0;
 		    $.each(askList, function(i, item) {
-		    	totalBTC += parseFloat(item[0])*parseFloat(item[1]);
+		    	totalBTC_asks += parseFloat(item[0])*parseFloat(item[1]);
 		        var $tr = $('<tr>').append(
 		            $('<td>').text(parseFloat(item[0]).toFixed(8)),
 		            $('<td>').text(parseFloat(item[1]).toFixed(4)),
 		            $('<td>').text(totalBTC_asks.toFixed(4))
 		        ).appendTo('#table-trade-ob-demo');
 		    });
+		var totalBTC_bids = 0;
 		    $.each(bidList, function(i, item) {
 		    	totalBTC_bids += parseFloat(item[0])*parseFloat(item[1]);
 		        var $tr = $('<tr>').append(
