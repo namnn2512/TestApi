@@ -276,12 +276,16 @@
 		$.ajax({
 		    url: "/tradeOB",
 		    type: "POST",
-		    dataType: "application/json",
+		    dataType: "json",
   			contentType: "application/json", 
 		    data: JSON.stringify(dataTradeOB),
-		    success: function (response, status) {
-		    	console.log(response.data);
-		    }
+		    success: function (response) {
+		    	console.log("success");
+		    	console.log(JSON.stringify(response));
+		    },
+	        error: function(error) {
+	            console.log("some error in fetching the notifications");
+	        }
 		});
     }
 
