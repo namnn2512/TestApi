@@ -290,9 +290,8 @@
     	$(function() {
 		    $.each(askList, function(i, item) {
 		        var $tr = $('<tr>').append(
-		            $('<td>').text(item.rank),
-		            $('<td>').text(item.content),
-		            $('<td>').text(item.UID)
+		            $('<td>').text(item[0]),
+		            $('<td>').text(item[1])
 		        );
 		        console.log($tr.wrap('<p>').html());
 		    });
