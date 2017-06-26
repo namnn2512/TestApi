@@ -274,13 +274,11 @@
 	    	depth :'10'
 	    }
 		$.ajax({
-			beforeSend: function(xhrObj){
-                xhrObj.setRequestHeader("Content-Type","x-www-form-urlencoded");
-                xhrObj.setRequestHeader('Access-Control-Allow-origin', 'true');
-        	},
-		    url: '/tradeOB',
-		    type: 'post',
-		    data: "json=" + escape(JSON.stringify(dataTradeOB)),
+		    url: "/tradeOB",
+		    method: "POST",
+		    dataType: "xml/html/script/json",
+  			contentType: "application/json", 
+		    data: dataTradeOB,
 		    success: function (response) {
 		        console.log(response);
 		    }
