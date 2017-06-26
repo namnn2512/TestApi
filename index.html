@@ -182,6 +182,7 @@
 		</table>
 	</div>
 	<div class="table-trade-bids" style="width:50%;float:left">
+		<h1></h1>
 		<h1 style="padding:10px">Bán Coin</h1>
 		<table id="table-trade-ob-demo-bid">
 			<tr>
@@ -311,6 +312,7 @@
     }
     function addTableTrade(askList, bidList) {
     	$("#table-trade-ob-demo").find("tr:gt(0)").remove();
+	$("#table-trade-ob-demo-bid").find("tr:gt(0)").remove();
     	$(function() {
     		var totalBTC_asks = 0;
 		    $.each(askList, function(i, item) {
