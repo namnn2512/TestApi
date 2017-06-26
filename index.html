@@ -161,7 +161,7 @@
 				<td id="coin-24Low"><span id="24LowBTC-ABY"></span></td>
 				<td id="coin-24Percent"><span id="percentBTC-ABY"></span></td>		
 			</tr>
-						<tr>
+			<tr>
 				<td id="coin-name"><label>BURST </label></td>
 				<td id="coin-price"><span id="BTC-BURST"></span></td>
 				<td id="coin-24High"><span id="24HighBTC-BURST"></span></td>
@@ -179,10 +179,25 @@
 </html>
 
 <script>  
+	$( document ).ready(function() {
+	    $('tr').on('click', function(e){
+	    	var key = $(e.target).closest('tr').find('td#coin-price').find('span').attr('id');
+	    	console.log(key);
+	    	if (typeof(key) != "undefined") {
+	    		if (key.indexOf("-") > 0) {
+	    			console.log("bittrex");
+		    	} else if(key.indexOf("_") > 0) {
+		    		console.log("poloniex");
+		    	} else {
+		    		console.log("Error");
+		    	}
+	    	}	    	
+	    });
+	});
     var socket = io();
     socket.on('connect', function(data) {
         socket.emit('join', 'Hello World from client');
-    });
+    });	
 
     socket.on('messages', function(data) {
 		if(data && $('#' +data[0])){
@@ -252,22 +267,26 @@
 				},700);
 			}
     }
-//     var dataTradeOB = {
-//     	command:'returnOrderBook',
-//     	currencyPair:'BTC_NXT'
-//     }
-// 	$.ajax({
-//     url: 'https://poloniex.com/public',
-//     type: 'post',
-//     data: dataTradeOB,
-//  //   	headers: {
-//  //    	'Access-Control-Allow-Origin':"*",
-// 	// 	"Content-Type": "application/json"
-// 	// },
-//     success: function (data) {
-//         console.log(data);
-//     }
-// });
+    function requestOB() {
+	    var dataTradeOB = {
+	    	command: 'returnOrderBook',
+	    	currencyPair:'BTC_NXT',
+	    	depth :'10'
+	    }
+		$.ajax({
+			beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","x-www-form-urlencoded");
+                xhrObj.setRequestHeader('Access-Control-Allow-origin', 'true');
+        	},
+		    url: '/tradeOB',
+		    type: 'post',
+		    data: "json=" + escape(JSON.stringify(dataTradeOB)),
+		    success: function (response) {
+		        console.log(response);
+		    }
+		});
+    }
+
 </script>
 <style>
 .table-coin {

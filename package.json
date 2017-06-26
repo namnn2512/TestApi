@@ -10,10 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "autobahn": "^17.5.2",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
-    "socket.io": "^2.0.2",
     "jquery": "^3.2.1",
     "node.bittrex.api": "^0.3.0",
-    "autobahn": "^17.5.2"
+    "socket.io": "^2.0.2"
   }
 }
