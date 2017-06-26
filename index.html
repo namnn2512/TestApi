@@ -170,7 +170,9 @@
 			</tr>
 		</table>
 	</div>
-	<div class="table-trade-ob">
+	<h1 id="title-typecoin" style="padding:10px"></h1>
+	<div class="table-trade-asks">
+		<h1 style="padding:10px">Bán Coin</h1>
 		<table id="table-trade-ob-demo">
 			<tr>
 				<td>Giá mua</td>
@@ -193,8 +195,10 @@
 	    	var key = $(e.target).closest('tr').find('td#coin-price').find('span').attr('id');
 	    	if (typeof(key) != "undefined") {
 	    		if (key.indexOf("-") > 0) {
+	    			$('#title-typecoin').text("BITTREX " + key);
 	    			console.log("bittrex");
 		    	} else if(key.indexOf("_") > 0) {
+		    		$('#title-typecoin').text("POLONIEX " + key);
 		    		var dataTradeOB = {
 				    	currencyPair: key
 	    			}
@@ -302,9 +306,9 @@
 		    $.each(askList, function(i, item) {
 		    	totalBTC += parseFloat(item[0])*parseFloat(item[1]);
 		        var $tr = $('<tr>').append(
-		            $('<td>').text(item[0]),
-		            $('<td>').text(item[1]),
-		            $('<td>').text(totalBTC)
+		            $('<td>').text(item[0].toFixed(8)),
+		            $('<td>').text(item[1].toFixed(4)),
+		            $('<td>').text(totalBTC.toFixed(4))
 		        ).appendTo('#table-trade-ob-demo');
 		    });
 		});
