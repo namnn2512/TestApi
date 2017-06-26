@@ -172,7 +172,11 @@
 	</div>
 	<div class="table-trade-ob">
 		<table id="table-trade-ob-demo">
-			
+			<tr>
+				<td>Giá mua</td>
+				<td>Số lượng coin</td>
+				<td>Tổng giá(BTC)</td>
+			</tr>
 		</table>
 	</div>
 	<h1 id="message"></h1>
@@ -292,11 +296,15 @@
 			}
     }
     function addTableTrade(askList, bidList) {
+    	$("#table-trade-ob-demo").find("tr:gt(0)").remove();
     	$(function() {
+    		var totalBTC = 0;
 		    $.each(askList, function(i, item) {
+		    	var totalBTC += parseFloat(item[0])*parseFloat(item[1]);
 		        var $tr = $('<tr>').append(
 		            $('<td>').text(item[0]),
-		            $('<td>').text(item[1])
+		            $('<td>').text(item[1]),
+		            $('<td>').text(totalBTC)
 		        ).appendTo('#table-trade-ob-demo');
 		    });
 		});
