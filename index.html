@@ -170,12 +170,22 @@
 			</tr>
 		</table>
 	</div>
-	<div class="table-trade-asks">
+	<div class="table-trade-asks" style="width:50%;float:left">
 		<h1 id="title-typecoin" style="padding:10px"></h1>
 		<h1 style="padding:10px">Bán Coin</h1>
 		<table id="table-trade-ob-demo">
 			<tr>
 				<td>Giá mua</td>
+				<td>Số lượng coin</td>
+				<td>Tổng giá(BTC)</td>
+			</tr>
+		</table>
+	</div>
+	<div class="table-trade-bids" style="width:50%;float:left">
+		<h1 style="padding:10px">Bán Coin</h1>
+		<table id="table-trade-ob-demo-bid">
+			<tr>
+				<td>Giá bán</td>
 				<td>Số lượng coin</td>
 				<td>Tổng giá(BTC)</td>
 			</tr>
@@ -302,14 +312,22 @@
     function addTableTrade(askList, bidList) {
     	$("#table-trade-ob-demo").find("tr:gt(0)").remove();
     	$(function() {
-    		var totalBTC = 0;
+    		var totalBTC_asks = 0;
 		    $.each(askList, function(i, item) {
 		    	totalBTC += parseFloat(item[0])*parseFloat(item[1]);
 		        var $tr = $('<tr>').append(
 		            $('<td>').text(parseFloat(item[0]).toFixed(8)),
 		            $('<td>').text(parseFloat(item[1]).toFixed(4)),
-		            $('<td>').text(totalBTC.toFixed(4))
+		            $('<td>').text(totalBTC_asks.toFixed(4))
 		        ).appendTo('#table-trade-ob-demo');
+		    });
+		    $.each(bidList, function(i, item) {
+		    	totalBTC_bids += parseFloat(item[0])*parseFloat(item[1]);
+		        var $tr = $('<tr>').append(
+		            $('<td>').text(parseFloat(item[0]).toFixed(8)),
+		            $('<td>').text(parseFloat(item[1]).toFixed(4)),
+		            $('<td>').text(totalBTC_bids.toFixed(4))
+		        ).appendTo('#table-trade-ob-demo-bid');
 		    });
 		});
     }

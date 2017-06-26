@@ -26,7 +26,7 @@ app.get('/', function (req, res, next) {
 });
 app.post('/tradeOB',function(req,res,next) {
     var currencyPair = req.body.currencyPair;
-    var url = "https://poloniex.com/public?command=returnOrderBook&currencyPair="+currencyPair+"&depth=50"
+    var url = "https://poloniex.com/public?command=returnOrderBook&currencyPair="+currencyPair+"&depth=15"
     var body = '';
     https.get(url, function(response){
         response.on('data', function(chunk){
