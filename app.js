@@ -25,11 +25,8 @@ app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/index.html');
 });
 app.post('/tradeOB',function(req,res,next) {
-    var command = req.body.command;
     var currencyPair = req.body.currencyPair;
-    var depth = req.body.depth;
-    console.log(command+currencyPair+depth);
-    var url = "https://poloniex.com/public?command="+command+"&currencyPair="+currencyPair+"&depth="+depth
+    var url = "https://poloniex.com/public?command=returnOrderBook&currencyPair="+currencyPair+"&depth=50"
     var body = '';
     https.get(url, function(response){
         response.on('data', function(chunk){

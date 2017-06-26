@@ -182,12 +182,15 @@
 	$( document ).ready(function() {
 	    $('tr').on('click', function(e){
 	    	var key = $(e.target).closest('tr').find('td#coin-price').find('span').attr('id');
-	    	console.log(key);
 	    	if (typeof(key) != "undefined") {
 	    		if (key.indexOf("-") > 0) {
 	    			console.log("bittrex");
 		    	} else if(key.indexOf("_") > 0) {
-		    		console.log("poloniex");
+		    		var dataTradeOB = {
+				    	currencyPair: key
+	    			}
+	    			var response = requestOB(dataTradeOB);
+	    			console.log(response);
 		    	} else {
 		    		console.log("Error");
 		    	}
@@ -267,12 +270,7 @@
 				},700);
 			}
     }
-    function requestOB() {
-	    var dataTradeOB = {
-	    	command: 'returnOrderBook',
-	    	currencyPair: 'BTC_NXT',
-	    	depth : '10'
-	    }
+    function requestOB(dataTradeOB) {
 		$.ajax({
 		    url: "/tradeOB",
 		    type: "POST",
@@ -280,8 +278,7 @@
   			contentType: "application/json", 
 		    data: JSON.stringify(dataTradeOB),
 		    success: function (response) {
-		    	console.log("success");
-		    	console.log(JSON.stringify(response));
+		    	return JSON.stringify(response);
 		    },
 	        error: function(error) {
 	            console.log("some error in fetching the notifications");
