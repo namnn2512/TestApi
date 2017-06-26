@@ -287,8 +287,16 @@
 			}
     }
     function addTableTrade(askList, bidList) {
-    	console.log(askList);
-    	console.log(bidList);
+    	$(function() {
+		    $.each(askList, function(i, item) {
+		        var $tr = $('<tr>').append(
+		            $('<td>').text(item.rank),
+		            $('<td>').text(item.content),
+		            $('<td>').text(item.UID)
+		        );
+		        console.log($tr.wrap('<p>').html());
+		    });
+		});
     }
 
 </script>
