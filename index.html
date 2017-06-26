@@ -196,7 +196,7 @@
 			  			contentType: "application/json", 
 					    data: JSON.stringify(dataTradeOB),
 					    success: function (response) {
-					    	var data = JSON.stringify(response);
+					    	var data = JSON.parse(response);
 					    	var askList = data.asks;
 					    	var bidList = data.bids;
 					    	console.log(askList);
