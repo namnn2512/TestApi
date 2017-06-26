@@ -170,6 +170,7 @@
 			</tr>
 		</table>
 	</div>
+	<p style="clear:both"></p>
 	<h1 id="title-typecoin" style="padding:10px"></h1>
 	<div class="table-trade-asks">
 		<h1 style="padding:10px">Bán Coin</h1>
@@ -306,8 +307,8 @@
 		    $.each(askList, function(i, item) {
 		    	totalBTC += parseFloat(item[0])*parseFloat(item[1]);
 		        var $tr = $('<tr>').append(
-		            $('<td>').text(item[0].toFixed(8)),
-		            $('<td>').text(item[1].toFixed(4)),
+		            $('<td>').text(parseFloat(item[0]).toFixed(8)),
+		            $('<td>').text(parseFloat(item[1]).toFixed(4)),
 		            $('<td>').text(totalBTC.toFixed(4))
 		        ).appendTo('#table-trade-ob-demo');
 		    });
