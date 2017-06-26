@@ -199,8 +199,7 @@
 					    	var data = JSON.parse(response);
 					    	var askList = data.asks;
 					    	var bidList = data.bids;
-					    	console.log(askList);
-					    	console.log(bidList);
+					    	addTableTrade(askList,bidList);
 					    },
 				        error: function(error) {
 				            console.log("some error in fetching the notifications");
@@ -286,6 +285,10 @@
 					elementCoinName.css('background-color','white');
 				},700);
 			}
+    }
+    function addTableTrade(askList, bidList) {
+    	console.log(askList);
+    	console.log(bidList);
     }
 
 </script>
