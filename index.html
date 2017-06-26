@@ -269,9 +269,9 @@
     }
     function requestOB() {
 	    var dataTradeOB = {
-	    	command: "returnOrderBook",
-	    	currencyPair: "BTC_NXT",
-	    	depth : "10"
+	    	command: 'returnOrderBook',
+	    	currencyPair: 'BTC_NXT',
+	    	depth : '10'
 	    }
 		$.ajax({
 		    url: "/tradeOB",
@@ -280,7 +280,7 @@
   			contentType: "application/json", 
 		    data: JSON.stringify(dataTradeOB),
 		    success: function (response, status) {
-		    	console.log(response);	
+		    	console.log(response.data);
 		    }
 		});
     }
