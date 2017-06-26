@@ -189,8 +189,21 @@
 		    		var dataTradeOB = {
 				    	currencyPair: key
 	    			}
-	    			var response = requestOB(dataTradeOB);
-	    			console.log(response);
+	    			var res = '';
+	    			$.ajax({
+					    url: "/tradeOB",
+					    type: "POST",
+					    dataType: "json",
+			  			contentType: "application/json", 
+					    data: JSON.stringify(dataTradeOB),
+					    success: function (response) {
+					    	res = JSON.stringify(response);
+					    },
+				        error: function(error) {
+				            console.log("some error in fetching the notifications");
+				        }
+					});
+					console.log(res);
 		    	} else {
 		    		console.log("Error");
 		    	}
@@ -269,21 +282,6 @@
 					elementCoinName.css('background-color','white');
 				},700);
 			}
-    }
-    function requestOB(dataTradeOB) {
-		$.ajax({
-		    url: "/tradeOB",
-		    type: "POST",
-		    dataType: "json",
-  			contentType: "application/json", 
-		    data: JSON.stringify(dataTradeOB),
-		    success: function (response) {
-		    	return JSON.stringify(response);
-		    },
-	        error: function(error) {
-	            console.log("some error in fetching the notifications");
-	        }
-		});
     }
 
 </script>
