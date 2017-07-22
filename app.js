@@ -68,7 +68,7 @@ io.on('connection', function (client) {
         console.log("Websocket connection open");
          function marketEvent(args, kwargs) {
              //client.emit('messages', args);
-             io.emit('messages', args);
+             io.emit('BTC_XMR', args);
         }
         function tickerEvent(args, kwargs) {
             // client.emit('messages', args);
