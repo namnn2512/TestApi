@@ -58,9 +58,9 @@ io.on('connection', function (client) {
     client.on('sendMessages', function (data) {
         io.emit('broadcastMessages', data);
     });
-    //client.on('messages',function(data){
-        //io.emit('BTC_XMR',data);
-    //});
+    client.on('marketMessages',function(data){
+        io.emit('BTC_XMR',data);
+    });
 });
 
 
