@@ -206,8 +206,8 @@
 	    $('tr').on('click', function(e){
 	    	var key = $(e.target).closest('tr').find('td#coin-price').find('span').attr('id');
 	    	if (typeof(key) != "undefined") {
-			$('.table-trade-asks').addClass('display');
-			$('.table-trade-bids').addClass('display');
+			$('.table-trade-asks').css('display','block');
+			$('.table-trade-bids').css('display','block');
 	    		if (key.indexOf("-") > 0) {
 	    			$('#title-typecoin').text("BITTREX " + key);
 	    			console.log("bittrex");
@@ -370,9 +370,6 @@
 }
 .table-coin tr:first-child td{
 	padding: 10px;
-	}
-.table-trade-asks .display,.table-trade-bids .display {
-	display:block;
 	}
 .table-trade-asks,.table-trade-bids {
 	display:none;
