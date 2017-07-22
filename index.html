@@ -264,8 +264,8 @@
 			$('#percent' +data[0]).text(percent.toString().substring(0,4)+'%');
 		}
     });
-    socket.on('BTC_XMR',function(data){
- 	    //socket.emit('BTC_XMR', data);
+    socket.on('marketMessages',function(data){
+ 	    socket.emit('BTC_XMR', data);
 	    console.log(data);
     });
 	
