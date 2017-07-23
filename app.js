@@ -78,7 +78,7 @@ io.on('connection', function (client) {
 //             // client.emit('messages', args);
 //             io.emit('messages', args);
 //         }
-        session.subscribe('marketMessages', marketEvent);
+        session.subscribe('BTC_XMR', marketEvent);
         session.subscribe('ticker', tickerEvent);
         //session.subscribe('trollbox', trollboxEvent);
     }
